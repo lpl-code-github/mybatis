@@ -15,4 +15,9 @@
         from user
         where `name` = #{name} and `pwd` = #{pwd}
     </select>
+    <select id="selectByNameAndPwd2" resultType="com.lpl.mybatis.domain.User" parameterType="map">
+        select *
+        from user
+        where `name` = #{name} and `pwd` = #{pwd}
+    </select>
 </mapper>

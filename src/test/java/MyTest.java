@@ -2,9 +2,11 @@ import com.lpl.mybatis.config.MybatisConfig;
 import com.lpl.mybatis.domain.User;
 import com.lpl.mybatis.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lipenglong
@@ -37,7 +39,6 @@ public class MyTest {
      */
     public void selectById(){
         SqlSession session = MybatisConfig.getSession();
-        // 方法二
         UserMapper mapper = session.getMapper(UserMapper.class);
         User user = mapper.selectById(1);
         // 打印
@@ -52,9 +53,14 @@ public class MyTest {
      */
     public void selectByNameAndPwd(){
         SqlSession session = MybatisConfig.getSession();
-        // 方法二
         UserMapper mapper = session.getMapper(UserMapper.class);
-        User user = mapper.selectByNameAndPwd("lpl","123456");
+        // 通过parm传参
+        // User user = mapper.selectByNameAndPwd("lpl","123456");
+        // 通过map传参
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name","lpl");
+        map.put("pwd","123456");
+        User user = mapper.selectByNameAndPwd2(map);
         // 打印
         System.out.println(user);
         // 关闭连接

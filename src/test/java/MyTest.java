@@ -13,6 +13,9 @@ import java.util.List;
  */
 public class MyTest {
     @Test
+    /**
+     * 测试查询全部
+     */
     public void select(){
         SqlSession session = MybatisConfig.getSession();
         // 方法一
@@ -29,11 +32,29 @@ public class MyTest {
     }
 
     @Test
+    /**
+     * 测试根据id查询
+     */
     public void selectById(){
         SqlSession session = MybatisConfig.getSession();
         // 方法二
         UserMapper mapper = session.getMapper(UserMapper.class);
         User user = mapper.selectById(1);
+        // 打印
+        System.out.println(user);
+        // 关闭连接
+        session.close();
+    }
+
+    @Test
+    /**
+     * 测试通过用户名和密码查询
+     */
+    public void selectByNameAndPwd(){
+        SqlSession session = MybatisConfig.getSession();
+        // 方法二
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = mapper.selectByNameAndPwd("lpl","123456");
         // 打印
         System.out.println(user);
         // 关闭连接

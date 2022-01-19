@@ -24,4 +24,6 @@ public interface UserMapper {
     User selectByNameAndPwd2(Map<String,Object> map);
     // 添加
     int addUser(User user);
+    // 更新
+    int updateUser(User user);
 }

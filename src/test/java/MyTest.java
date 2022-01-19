@@ -86,4 +86,27 @@ public class MyTest {
         // 关闭连接
         session.close();
     }
+
+    @Test
+    /**
+     * 测试添加
+     */
+    public void updateUser(){
+        SqlSession session = MybatisConfig.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = mapper.selectById(1);
+        user.setPwd("654321");
+        int i = mapper.updateUser(user);
+        if (i > 0){
+            System.out.println("更新成功，i="+i);
+            User user1 = mapper.selectById(1);
+            System.out.println("更新后的信息"+user1);
+        }else {
+            System.out.println("更新失败，i="+i);
+        }
+        // 提交事务
+        session.commit();
+        // 关闭连接
+        session.close();
+    }
 }

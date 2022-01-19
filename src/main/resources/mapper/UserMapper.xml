@@ -5,6 +5,12 @@
         insert into `user` (`id`, `name`, `pwd`)
         values (#{id}, #{name}, #{pwd})
     </insert>
+    <update id="updateUser">
+        update user
+        set name=#{name},
+            pwd=#{pwd}
+        where id = #{id}
+    </update>
     <select id="selectUser" resultType="com.lpl.mybatis.domain.User">
         select `id`, `name`, `pwd`
         from `user`

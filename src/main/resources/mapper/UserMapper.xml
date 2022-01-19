@@ -11,6 +11,11 @@
             pwd=#{pwd}
         where id = #{id}
     </update>
+    <delete id="deleteUser">
+        delete
+        from `user`
+        where `id` = #{id}
+    </delete>
     <select id="selectUser" resultType="com.lpl.mybatis.domain.User">
         select `id`, `name`, `pwd`
         from `user`

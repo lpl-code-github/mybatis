@@ -109,4 +109,23 @@ public class MyTest {
         // 关闭连接
         session.close();
     }
+
+    @Test
+    /**
+     * 测试添加
+     */
+    public void deleteUser(){
+        SqlSession session = MybatisConfig.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int i = mapper.deleteUser(3);
+        if (i > 0){
+            System.out.println("删除成功，i="+i);
+        }else {
+            System.out.println("删除失败，i="+i);
+        }
+        // 提交事务
+        session.commit();
+        // 关闭连接
+        session.close();
+    }
 }

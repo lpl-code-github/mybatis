@@ -26,4 +26,6 @@ public interface UserMapper {
     int addUser(User user);
     // 更新
     int updateUser(User user);
+    // 删除方法
+    int deleteUser(int id);
 }

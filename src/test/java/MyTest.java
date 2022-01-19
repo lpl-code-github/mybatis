@@ -27,4 +27,16 @@ public class MyTest {
         // 关闭连接
         session.close();
     }
+
+    @Test
+    public void selectById(){
+        SqlSession session = MybatisConfig.getSession();
+        // 方法二
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = mapper.selectById(1);
+        // 打印
+        System.out.println(user);
+        // 关闭连接
+        session.close();
+    }
 }

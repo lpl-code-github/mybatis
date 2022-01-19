@@ -5,4 +5,9 @@
         select `id`, `name`, `pwd`
         from `user`
     </select>
+    <select id="selectById" resultType="com.lpl.mybatis.domain.User">
+        select `id`, `name`, `pwd`
+        from `user`
+        where `id` = #{id}
+    </select>
 </mapper>

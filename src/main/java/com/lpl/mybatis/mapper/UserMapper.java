@@ -12,5 +12,8 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper {
+    // 查询全部
     List<User> selectUser();
+    // 根据id查询
+    User selectById(int id);
 }

@@ -66,4 +66,24 @@ public class MyTest {
         // 关闭连接
         session.close();
     }
+
+    @Test
+    /**
+     * 测试添加
+     */
+    public void addUser(){
+        SqlSession session = MybatisConfig.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user = new User(3,"testUser","test");
+        int i = mapper.addUser(user);
+        if (i > 0){
+            System.out.println("添加成功，i="+i);
+        }else {
+            System.out.println("添加失败，i="+i);
+        }
+        // 提交事务
+        session.commit();
+        // 关闭连接
+        session.close();
+    }
 }

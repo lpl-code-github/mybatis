@@ -22,4 +22,6 @@ public interface UserMapper {
     User selectByNameAndPwd(@Param("name") String name ,@Param("pwd") String pwd);
     // 使用map集合传参
     User selectByNameAndPwd2(Map<String,Object> map);
+    // 添加
+    int addUser(User user);
 }

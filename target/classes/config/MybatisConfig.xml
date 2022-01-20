@@ -2,9 +2,64 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--优化前-->
+<!--<configuration>-->
+<!--    <environments default="development">-->
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>-->
+<!--                <property name="username" value="root"/>-->
+<!--                <property name="password" value="123456"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+<!--    <mappers>-->
+<!--        <mapper resource="mapper/UserMapper.xml"/>-->
+<!--    </mappers>-->
+<!--</configuration>-->
+
+<!--优化配置文件-->
 <configuration>
+    <!-- 引入外部配置文件，优先使用外部配置文件的属性-->
+    <properties resource="config/db.properties">
+        <!-- 也可以在这里设置属性 -->
+        <property name="username" value="root"/>
+        <property name="pwd" value="123456"/>
+    </properties>
+    
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!-- 类型别名  -->
+    <typeAliases>
+        <!-- UserMapper中就不需要写包，实体类较少选择typeAlias  -->
+<!--        <typeAlias type="com.lpl.mybatis.domain.User" alias="User"/>-->
+        <!-- UserMapper中写类名小写或者在实体类@Alias("")自定义，实体类较多选择package -->
+        <package name="com.lpl.mybatis.domain"/>
+    </typeAliases>
+
+    <!-- default选择使用哪套环境 -->
     <environments default="development">
+        <!--开发环境-->
         <environment id="development">
+            <!--事务管理器 JDBC/MANAGED-->
+            <transactionManager type="JDBC"/>
+            <!--数据源 UNPOOLED/POOLED/JNDI -->
+            <dataSource type="POOLED">
+                <!--property -->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+<!--                <property name="password" value="${password}"/>-->
+                <property name="password" value="${pwd}"/>
+            </dataSource>
+        </environment>
+        <!--测试环境-->
+        <environment id="test">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>

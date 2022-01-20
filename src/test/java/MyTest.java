@@ -1,13 +1,21 @@
 import com.lpl.mybatis.config.MybatisConfig;
+import com.lpl.mybatis.domain.Member;
 import com.lpl.mybatis.domain.User;
+import com.lpl.mybatis.mapper.MemberMapper;
 import com.lpl.mybatis.mapper.UserMapper;
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author lipenglong
@@ -156,6 +164,79 @@ public class MyTest {
         for (User user: list) {
             logger.debug(user);
         }
+        // 关闭连接
+        session.close();
+    }
+
+    @Test
+    /**
+     * 测试 #{}和${}
+     */
+    public void findByUsername(){
+        SqlSession session = MybatisConfig.getSession();
+
+        MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+        List<Member> memberList = mapper.findByUsername("%李%");
+        List<Member> memberList2 = mapper.findByUsername2("李");
+
+        System.out.println("memberList: ");
+        for (Member member : memberList) {
+            System.out.println(member);
+        }
+
+        System.out.println("memberList2: ");
+
+        for (Member member : memberList2) {
+            System.out.println(member);
+        }
+
+        session.commit();// 提交事务
+        session.close();
+    }
+
+    @Test
+    /**
+     * sql注入测试
+     */
+    public void findByUsername2(){
+        SqlSession session = MybatisConfig.getSession();
+
+        MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+        List<Member> memberList = mapper.findByUsername(" aaa' or 1=1 -- ");
+        List<Member> memberList2 = mapper.findByUsername2(" aaa' or 1=1 -- ");
+
+        System.out.println("memberList: ");
+        for (Member member : memberList) {
+            System.out.println(member);
+        }
+
+        System.out.println("memberList2: ");
+
+        for (Member member : memberList2) {
+            System.out.println(member);
+        }
+
+        session.commit();// 提交事务
+        session.close();
+    }
+
+    @Test
+    /**
+     * 测试删除的sql注入
+     */
+    public void deleteMember(){
+        SqlSession session = MybatisConfig.getSession();
+        MemberMapper mapper = session.getMapper(MemberMapper.class);
+        int i = mapper.deleteById("359b3258b19' or 1=1 -- ");
+        if (i > 0){
+            logger.debug("删除成功，i="+i);
+        }else {
+            logger.debug("删除失败，i="+i);
+        }
+        // 提交事务
+        session.commit();
         // 关闭连接
         session.close();
     }

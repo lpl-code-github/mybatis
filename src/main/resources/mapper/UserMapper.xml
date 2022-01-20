@@ -16,28 +16,28 @@
         from `user`
         where `id` = #{id}
     </delete>
-    <select id="selectUser" resultType="com.lpl.mybatis.domain.User">
+    <select id="selectUser" resultType="User">
         select `id`, `name`, `pwd`
         from `user`
     </select>
-    <select id="selectById" resultType="com.lpl.mybatis.domain.User">
+    <select id="selectById" resultType="User">
         select `id`, `name`, `pwd`
         from `user`
         where `id` = #{id}
     </select>
-    <select id="selectByNameAndPwd" resultType="com.lpl.mybatis.domain.User">
+    <select id="selectByNameAndPwd" resultType="User">
         select *
         from user
         where `name` = #{name}
           and `pwd` = #{pwd}
     </select>
-    <select id="selectByNameAndPwd2" resultType="com.lpl.mybatis.domain.User" parameterType="map">
+    <select id="selectByNameAndPwd2" resultType="User" parameterType="map">
         select *
         from user
         where `name` = #{name}
           and `pwd` = #{pwd}
     </select>
-    <select id="selectLike" resultType="com.lpl.mybatis.domain.User">
+    <select id="selectLike" resultType="User">
         select * from `user` where name like #{value}
     </select>
 </mapper>

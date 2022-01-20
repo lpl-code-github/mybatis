@@ -28,10 +28,13 @@
         <property name="username" value="root"/>
         <property name="pwd" value="123456"/>
     </properties>
-    
+    <!-- 设置 -->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- 标准的日志工厂 -->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <!-- log4j日志 -->
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
 
     <!-- 类型别名  -->

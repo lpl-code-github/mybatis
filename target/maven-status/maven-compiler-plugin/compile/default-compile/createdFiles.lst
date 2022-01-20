@@ -1,0 +1,5 @@
+com\lpl\mybatis\config\MybatisConfig.class
+com\lpl\mybatis\domain\Member.class
+com\lpl\mybatis\mapper\MemberMapper.class
+com\lpl\mybatis\mapper\UserMapper.class
+com\lpl\mybatis\domain\User.class

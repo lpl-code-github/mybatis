@@ -89,7 +89,7 @@ public class MyTest {
 
     @Test
     /**
-     * 测试添加
+     * 测试更新
      */
     public void updateUser(){
         SqlSession session = MybatisConfig.getSession();
@@ -112,7 +112,7 @@ public class MyTest {
 
     @Test
     /**
-     * 测试添加
+     * 测试删除
      */
     public void deleteUser(){
         SqlSession session = MybatisConfig.getSession();
@@ -125,6 +125,24 @@ public class MyTest {
         }
         // 提交事务
         session.commit();
+        // 关闭连接
+        session.close();
+    }
+
+    @Test
+    /**
+     * 测试模糊查询
+     */
+    public void selectLike(){
+        SqlSession session = MybatisConfig.getSession();
+
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        // Java代码中添加sql通配符
+        List<User> list = mapper.selectLike("%李%");
+        // 打印
+        for (User user: list) {
+            System.out.println(user);
+        }
         // 关闭连接
         session.close();
     }

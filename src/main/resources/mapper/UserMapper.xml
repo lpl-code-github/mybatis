@@ -37,4 +37,7 @@
         where `name` = #{name}
           and `pwd` = #{pwd}
     </select>
+    <select id="selectLike" resultType="com.lpl.mybatis.domain.User">
+        select * from `user` where name like #{value}
+    </select>
 </mapper>

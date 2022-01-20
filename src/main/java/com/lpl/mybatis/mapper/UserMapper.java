@@ -28,4 +28,6 @@ public interface UserMapper {
     int updateUser(User user);
     // 删除方法
     int deleteUser(int id);
+    // 模糊查询
+    List<User> selectLike(String value);
 }

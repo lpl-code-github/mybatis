@@ -121,7 +121,7 @@ public class MyTest {
             logger.debug("添加失败，i="+i);
         }
         // 提交事务
-        session.commit();
+        // session.commit();
         // 关闭连接
         session.close();
     }
@@ -145,7 +145,7 @@ public class MyTest {
             logger.debug("更新失败，i="+i);
         }
         // 提交事务
-        session.commit();
+        // session.commit();
         // 关闭连接
         session.close();
     }
@@ -165,7 +165,7 @@ public class MyTest {
             logger.debug("删除失败，i="+i);
         }
         // 提交事务
-        session.commit();
+        // session.commit();
         // 关闭连接
         session.close();
     }
@@ -212,7 +212,7 @@ public class MyTest {
             System.out.println(member);
         }
 
-        session.commit();// 提交事务
+        // session.commit();// 提交事务
         session.close();
     }
 
@@ -239,7 +239,7 @@ public class MyTest {
             System.out.println(member);
         }
 
-        session.commit();// 提交事务
+        // session.commit();// 提交事务
         session.close();
     }
 
@@ -257,7 +257,7 @@ public class MyTest {
             logger.debug("删除失败，i="+i);
         }
         // 提交事务
-        session.commit();
+        // session.commit();
         // 关闭连接
         session.close();
     }

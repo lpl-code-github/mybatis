@@ -27,9 +27,12 @@ public class MybatisConfig {
             e.printStackTrace();
         }
     }
-
     // 获取SqlSession连接
     public static SqlSession getSession(){
+        return getSession(true); // 事务自动提交
+    }
+
+    public static SqlSession getSession(boolean flags){
         return sqlSessionFactory.openSession();
     }
 }

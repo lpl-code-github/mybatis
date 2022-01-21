@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lpl.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="user">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `name`, pwd
+    </sql>
+
     <insert id="addUser">
         insert into `user` (`id`, `name`, `pwd`)
         values (#{id}, #{name}, #{pwd})
@@ -16,12 +25,14 @@
         from `user`
         where `id` = #{id}
     </delete>
-    <select id="selectUser" resultType="User">
-        select `id`, `name`, `pwd`
+    <select id="selectUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
         from `user`
     </select>
-    <select id="selectById" resultType="User">
-        select `id`, `name`, `pwd`
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
         from `user`
         where `id` = #{id}
     </select>
@@ -31,13 +42,16 @@
         where `name` = #{name}
           and `pwd` = #{pwd}
     </select>
-    <select id="selectByNameAndPwd2" resultType="User" parameterType="map">
-        select *
+    <select id="selectByNameAndPwd2" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
         from user
         where `name` = #{name}
-          and `pwd` = #{pwd}
+        and `pwd` = #{pwd}
     </select>
-    <select id="selectLike" resultType="User">
-        select * from `user` where name like #{value}
+    <select id="selectLike" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `user` where name like #{value}
     </select>
 </mapper>

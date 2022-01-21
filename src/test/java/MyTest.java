@@ -92,7 +92,7 @@ public class MyTest {
         logger.info("info:进入添加addUser方法");
         SqlSession session = MybatisConfig.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        User user = new User(3,"testUser","test");
+        User user = new User(4,"testUser","test");
         int i = mapper.addUser(user);
         if (i > 0){
             logger.debug("添加成功，i="+i);
@@ -137,7 +137,7 @@ public class MyTest {
         logger.info("info:进入删除deleteUser方法");
         SqlSession session = MybatisConfig.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        int i = mapper.deleteUser(3);
+        int i = mapper.deleteUser(4);
         if (i > 0){
             logger.debug("删除成功，i="+i);
         }else {

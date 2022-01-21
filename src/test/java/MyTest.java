@@ -1,9 +1,11 @@
+import com.github.pagehelper.PageHelper;
 import com.lpl.mybatis.config.MybatisConfig;
 import com.lpl.mybatis.domain.Member;
 import com.lpl.mybatis.domain.User;
 import com.lpl.mybatis.mapper.MemberMapper;
 import com.lpl.mybatis.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -47,7 +49,26 @@ public class MyTest {
         // 关闭连接
         session.close();
     }
+    @Test
+    /**
+     * 测试分页查询
+     */
+    public void selectByPage(){
+        logger.info("info:进入分页查询方法");
+        SqlSession session = MybatisConfig.getSession();
 
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        // 分页查询，查询第二页，每页显示2条数据
+        PageHelper.startPage(2,2);
+        List<User> list = mapper.selectUser();
+        // 打印
+        for (User user: list) {
+            // System.out.println(user);
+            logger.debug(user);
+        }
+        // 关闭连接
+        session.close();
+    }
     @Test
     /**
      * 测试根据id查询

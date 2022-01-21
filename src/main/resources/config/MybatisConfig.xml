@@ -44,7 +44,11 @@
         <!-- UserMapper中写类名小写或者在实体类@Alias("")自定义，实体类较多选择package -->
         <package name="com.lpl.mybatis.domain"/>
     </typeAliases>
-
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
     <!-- default选择使用哪套环境 -->
     <environments default="development">
         <!--开发环境-->

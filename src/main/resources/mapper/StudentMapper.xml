@@ -17,8 +17,12 @@
     </select>
 
     <resultMap id="StudentTeacher" type="com.lpl.mybatis.domain.Student">
+        <!--
+            association -> 对象
+            collection -> 集合
+        -->
         <!-- association关联属性 property属性名  javaType属性类型  column在多的一方的表中的列名 -->
-        <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"/>
+        <association property="teacher" javaType="com.lpl.mybatis.domain.Teacher" column="tid" select="getTeacher"/>
     </resultMap>
 
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lpl.mybatis.mapper.StudentMapper">
     <!--
-      需求： 需要获取所有学生独赢的老师信息
+      需求： 需要获取所有学生对应的老师信息
       思路：
         1.获取所有学生的信息
         2.根据获取的学生信息的老师ID->获取该老师的信息

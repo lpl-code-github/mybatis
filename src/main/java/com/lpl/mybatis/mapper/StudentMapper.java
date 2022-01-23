@@ -10,5 +10,8 @@ import java.util.List;
  * @describe
  */
 public interface StudentMapper {
+    // 按照查询嵌套查询
     List<Student> getStudents();
+    // 按照结果嵌套查询
+    List<Student> getStudents2();
 }

@@ -30,4 +30,21 @@ public class MyTest2 {
 
         session.close();
     }
+
+    @Test
+    /**
+     * 测试查询全部2
+     */
+    public void select2(){
+        SqlSession session = MybatisConfig.getSession();
+        StudentMapper mapper = session.getMapper(StudentMapper.class);
+
+        List<Student> list = mapper.getStudents2();
+
+        for (Student student: list) {
+            System.out.println(student);
+        }
+
+        session.close();
+    }
 }

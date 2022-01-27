@@ -64,4 +64,19 @@ public class MyTest2 {
 
         session.close();
     }
+
+    /**
+     * 测试查询某老师(下的学生)[一对多]
+     */
+    @Test
+    public void select4() {
+        SqlSession session = MybatisConfig.getSession();
+        TeacherMapper mapper = session.getMapper(TeacherMapper.class);
+
+        Teacher teacher = mapper.getTeacher2(1);
+
+        System.out.println(teacher);
+
+        session.close();
+    }
 }

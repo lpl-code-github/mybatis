@@ -1,6 +1,7 @@
 package com.lpl.mybatis.domain;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import java.util.Date;
  * @describe
  */
 @Data
+@Accessors(chain = true)
 public class Blog {
     private String id;
     private String title;

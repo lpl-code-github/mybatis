@@ -33,6 +33,6 @@ public class MybatisConfig {
     }
 
     public static SqlSession getSession(boolean flags){
-        return sqlSessionFactory.openSession();
+        return sqlSessionFactory.openSession(flags);
     }
 }

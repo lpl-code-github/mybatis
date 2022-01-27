@@ -7,7 +7,8 @@ import java.util.UUID;
  * @version 1.0
  * @describe
  */
-public class IdUtils {
+@SuppressWarnings("all") //抑制警告
+public class IdUtil {
     public static String getId(){
         return UUID.randomUUID().toString().replace("-","");
     }

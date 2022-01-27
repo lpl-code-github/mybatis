@@ -4,7 +4,24 @@
 
     <insert id="addBlog" parameterType="Blog">
         insert into blog (id, title, author, create_time, views)
-        values (#{id},#{title},#{author},#{createTime},#{views});
+        values (#{id}, #{title}, #{author}, #{createTime}, #{views});
     </insert>
+    <select id="queryBlogIf" parameterType="map" resultType="com.lpl.mybatis.domain.Blog">
+        select * from blog
+        <!--
+            where 元素只会在子元素返回任何内容的情况下才插入 “WHERE” 子句。
+            而且，若子句的开头为 “AND” 或 “OR”，where 元素也会将它们去除。
+        -->
+        <where>
+            <if test="title != null">
+                title = #{title}
+            </if>
+            <if test="author != null">
+                and author = #{author}
+            </if>
+        </where>
+    </select>
+
+
 
 </mapper>

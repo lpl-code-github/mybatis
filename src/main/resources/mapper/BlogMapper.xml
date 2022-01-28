@@ -6,6 +6,21 @@
         insert into blog (id, title, author, create_time, views)
         values (#{id}, #{title}, #{author}, #{createTime}, #{views});
     </insert>
+
+    <update id="updateBlog" parameterType="map">
+        update blog
+        <!-- set是用的逗号隔开 -->
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="author != null">
+                author = #{author}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
     <select id="queryBlogIf" parameterType="map" resultType="com.lpl.mybatis.domain.Blog">
         select * from blog
         <!--
@@ -21,7 +36,6 @@
             </if>
         </where>
     </select>
-
 
 
 </mapper>

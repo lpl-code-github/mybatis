@@ -14,4 +14,6 @@ public interface BlogMapper {
     int addBlog(Blog blog);
     // 需求1
     List<Blog> queryBlogIf(Map map);
+    // 需求2
+    int updateBlog(Map map);
 }

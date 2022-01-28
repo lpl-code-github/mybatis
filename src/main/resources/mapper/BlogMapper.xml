@@ -37,5 +37,22 @@
         </where>
     </select>
 
+    <select id="queryBlogChoose" resultType="com.lpl.mybatis.domain.Blog">
+        select * from blog
+        <where>
+            <choose>
+                <when test="title != null">
+                    title = #{title}
+                </when>
+                <when test="author != null">
+                    and author = #{author}
+                </when>
+                <otherwise>
+                    and views = #{views}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
 
 </mapper>

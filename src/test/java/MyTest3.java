@@ -5,6 +5,7 @@ import com.lpl.mybatis.utils.IdUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -129,31 +130,53 @@ public class MyTest3 {
         System.out.println(blogs2);
 
         // 含有两个条件title和view
-        map.put("title","blog3");
+        map.put("title", "blog3");
         List<Blog> blogs3 = mapper.queryBlogChoose(map);
         System.out.println("含有两个条件title和view-----------");
         System.out.println(blogs3);
 
         // 含有两个条件author和view
         map.remove("title");
-        map.put("author","张三");
+        map.put("author", "张三");
         List<Blog> blogs4 = mapper.queryBlogChoose(map);
         System.out.println("含有两个条件author和view-----------");
         System.out.println(blogs4);
 
         // 含有两个条件title和author
-        map.put("title","blog3");
+        map.put("title", "blog3");
         map.remove("views");
         List<Blog> blogs5 = mapper.queryBlogChoose(map);
         System.out.println("含有两个条件title和author-----------");
         System.out.println(blogs5);
 
         // 含有三个条件title、author、view
-        map.put("title","blog3");
-        map.put("views",9999);
+        map.put("title", "blog3");
+        map.put("views", 9999);
         List<Blog> blogs6 = mapper.queryBlogChoose(map);
         System.out.println("含有三个条件title、author、view-----------");
         System.out.println(blogs6);
+
+        session.close();
+    }
+
+    /**
+     * 测试foreach
+     */
+    @Test
+    public void testQueryBlogForeach() {
+        SqlSession session = MybatisConfig.getSession();
+        BlogMapper mapper = session.getMapper(BlogMapper.class);
+
+        HashMap map = new HashMap();
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(5);
+        ids.add(6);
+        ids.add(7);
+        map.put("ids", ids);
+
+        List<Blog> blogs = mapper.queryBlogForeach(map);
+
+        System.out.println(blogs);
 
         session.close();
     }

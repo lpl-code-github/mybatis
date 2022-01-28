@@ -71,7 +71,7 @@ public class MyTest3 {
         map.remove("title");
         map.put("author", "张三");
         List<Blog> blogs3 = mapper.queryBlogIf(map);
-        System.out.println("条件只有author-----R--------------");
+        System.out.println("条件只有author--------------------");
         System.out.println(blogs3);
 
         session.close();

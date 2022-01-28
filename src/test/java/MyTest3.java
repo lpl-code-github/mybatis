@@ -118,21 +118,21 @@ public class MyTest3 {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         // 无条件
-//        List<Blog> blogs1 = mapper.queryBlogChoose(map);
-//        System.out.println("无条件-------------------------");
-//        System.out.println(blogs1);
+        List<Blog> blogs1 = mapper.queryBlogChoose(map);
+        System.out.println("无条件-------------------------");
+        System.out.println(blogs1);
 
         // 只有一个条件views
         map.put("views", 9999);
-//        List<Blog> blogs2 = mapper.queryBlogChoose(map);
-//        System.out.println("只有一个条件views-----------------");
-//        System.out.println(blogs2);
+        List<Blog> blogs2 = mapper.queryBlogChoose(map);
+        System.out.println("只有一个条件views-----------------");
+        System.out.println(blogs2);
 
         // 含有两个条件title和view
         map.put("title","blog3");
-//        List<Blog> blogs3 = mapper.queryBlogChoose(map);
-//        System.out.println("含有两个条件title和view-----------");
-//        System.out.println(blogs3);
+        List<Blog> blogs3 = mapper.queryBlogChoose(map);
+        System.out.println("含有两个条件title和view-----------");
+        System.out.println(blogs3);
 
         // 含有两个条件author和view
         map.remove("title");

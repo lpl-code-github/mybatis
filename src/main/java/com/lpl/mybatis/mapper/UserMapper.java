@@ -17,7 +17,7 @@ public interface UserMapper {
     // 查询全部
     List<User> selectUser();
     // 根据id查询
-    User selectById(int id);
+    User selectById(@Param("id")int id);
     // 根据密码和用户名查询
     User selectByNameAndPwd(@Param("name") String name ,@Param("pwd") String pwd);
     // 使用map集合传参

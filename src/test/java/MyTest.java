@@ -69,17 +69,26 @@ public class MyTest {
         // 关闭连接
         session.close();
     }
-    @Test
+
     /**
-     * 测试根据id查询
+     * 1、测试根据id查询
+     * 2、测试缓存
      */
+    @Test
     public void selectById(){
         logger.info("info:进入根据id查询selectById方法");
         SqlSession session = MybatisConfig.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        User user = mapper.selectById(1);
+        User user1 = mapper.selectById(1);
         // 打印
-        logger.debug(user);
+//        logger.debug(user);
+        System.out.println("user1:"+user1);
+
+        User user2 = mapper.selectById(1);
+        System.out.println("user2:"+user2);
+
+        System.out.println("user1==user2? "+(user1==user2));
+
         // 关闭连接
         session.close();
     }

@@ -116,6 +116,35 @@ public class MyTest {
         session2.close();
     }
 
+    /**
+     * 测试缓存失效 -- sqlSession相同，两次查询之间执行了写操作
+     */
+    @Test
+    public void selectById2(){
+        SqlSession session = MybatisConfig.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+
+        User user1 = mapper.selectById(1);
+        System.out.println("user1:"+user1);
+
+        //更新id为1的用户信息
+        user1.setPwd("123456update");
+        int i = mapper.updateUser(user1);
+        if (i > 0){
+            logger.debug("更新成功，i="+i);
+        }else {
+            logger.debug("更新失败，i="+i);
+        }
+
+        User user2 = mapper.selectById(1);
+        System.out.println("user2:"+user2);
+
+        System.out.println("user1==user2? "+(user1==user2));
+
+        // 关闭连接
+        session.close();
+    }
+
     @Test
     /**
      * 测试通过用户名和密码查询

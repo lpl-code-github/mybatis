@@ -145,6 +145,30 @@ public class MyTest {
         session.close();
     }
 
+
+    /**
+     * 测试缓存失效 -- sqlSession相同，手动清除一级缓存
+     */
+    @Test
+    public void selectById3(){
+        SqlSession session = MybatisConfig.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+
+        User user1 = mapper.selectById(1);
+        System.out.println("user1:"+user1);
+
+        // 手动清除一级缓存
+        session.clearCache();
+
+        User user2 = mapper.selectById(1);
+        System.out.println("user2:"+user2);
+
+        System.out.println("user1==user2? "+(user1==user2));
+
+        // 关闭连接
+        session.close();
+    }
+
     @Test
     /**
      * 测试通过用户名和密码查询

@@ -106,13 +106,15 @@ public class MyTest {
         User user1 = mapper1.selectById(1);
         System.out.println("user1:"+user1);
 
+        // 关闭连接1
+        session1.close();
+
         User user2 = mapper2.selectById(1);
         System.out.println("user2:"+user2);
 
         System.out.println("user1==user2? "+(user1==user2));
 
-        // 关闭连接
-        session1.close();
+        //关闭连接2
         session2.close();
     }
 
@@ -167,6 +169,28 @@ public class MyTest {
 
         // 关闭连接
         session.close();
+    }
+
+    /**
+     * 二级缓存测试
+     */
+    @Test
+    public void selectById4(){
+        SqlSession session1 = MybatisConfig.getSession();
+        SqlSession session2 = MybatisConfig.getSession();
+
+        UserMapper mapper1 = session1.getMapper(UserMapper.class);
+        UserMapper mapper2 = session2.getMapper(UserMapper.class);
+
+        User user1 = mapper1.selectById(1);
+        System.out.println("user1:"+user1);
+        session1.close();
+
+        User user2 = mapper2.selectById(1);
+        System.out.println("user2:"+user2);
+        session2.close();
+
+        System.out.println("user1==user2? "+(user1==user2));
     }
 
     @Test

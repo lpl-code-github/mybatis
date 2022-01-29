@@ -4,20 +4,12 @@ import com.lpl.mybatis.domain.Member;
 import com.lpl.mybatis.domain.User;
 import com.lpl.mybatis.mapper.MemberMapper;
 import com.lpl.mybatis.mapper.UserMapper;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author lipenglong

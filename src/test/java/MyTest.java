@@ -93,6 +93,29 @@ public class MyTest {
         session.close();
     }
 
+    /**
+     * 测试缓存失效 -- sqlSession不同
+     */
+    @Test
+    public void selectById1(){
+        SqlSession session1 = MybatisConfig.getSession();
+        SqlSession session2 = MybatisConfig.getSession();
+        UserMapper mapper1 = session1.getMapper(UserMapper.class);
+        UserMapper mapper2 = session2.getMapper(UserMapper.class);
+
+        User user1 = mapper1.selectById(1);
+        System.out.println("user1:"+user1);
+
+        User user2 = mapper2.selectById(1);
+        System.out.println("user2:"+user2);
+
+        System.out.println("user1==user2? "+(user1==user2));
+
+        // 关闭连接
+        session1.close();
+        session2.close();
+    }
+
     @Test
     /**
      * 测试通过用户名和密码查询
